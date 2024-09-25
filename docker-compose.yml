@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Service pour l'application PHP
+  web:
+    image: php:8.0-apache    # Utilise PHP 8 avec Apache
+    container_name: camagru-web
+    ports:
+      - "8080:80"            # Redirige le port 80 du conteneur vers le port 8080 de ta machine
+    volumes:
+      - ./src:/var/www/html  # Monte le dossier src dans le conteneur
+    environment:
+      - APP_ENV=development
+    depends_on:
+      - db                   # Assure que MySQL est démarré avant
+
+  # Service pour la base de données MySQL
+  db:
+    image: mysql:5.7
+    container_name: camagru-db
+    environment:
+      MYSQL_ROOT_PASSWORD: password   # Remplace par ton mot de passe root
+      MYSQL_DATABASE: camagru         # Crée une base de données 'camagru'
+      MYSQL_USER: user                # Utilisateur MySQL
+      MYSQL_PASSWORD: userpassword    # Mot de passe utilisateur
+    volumes:
+      - db_data:/var/lib/mysql        # Garde les données de la DB persistantes
+
+volumes:
+  db_data:                            # Volume pour persister les données de la base
