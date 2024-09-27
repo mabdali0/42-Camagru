@@ -1,6 +1,8 @@
 <?php
 // Démarrer la session
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Démarrez la session uniquement si elle n'est pas déjà active
+}
 
 // Détruire toutes les variables de session
 session_unset();

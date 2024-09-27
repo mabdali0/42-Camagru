@@ -27,7 +27,7 @@ body{
         #1845ad,
         #23a2f6
     );
-    left: -80px;
+    left: -150px;
     top: -80px;
 }
 .shape:last-child{
@@ -36,7 +36,7 @@ body{
         #ff512f,
         #f09819
     );
-    right: -30px;
+    right: -150px;
     bottom: -80px;
 }
 form{
@@ -53,8 +53,6 @@ form{
     padding: 50px 35px;
 }
 form *{
-    font-family: 'Poppins',sans-serif;
-    color: #ffffff;
     letter-spacing: 0.5px;
     outline: none;
     border: none;
@@ -76,7 +74,7 @@ input{
     display: block;
     height: 50px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
+    background-color: rgb(127 86 86 / 7%);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
@@ -89,7 +87,7 @@ input{
 button{
     margin-top: 10px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #e5e1e1;
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
@@ -101,7 +99,7 @@ button{
 .btn{
     margin-top: 10px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #e5e1e1 !important;
     color: #080710;
     padding: 15px 0;
     font-size: 18px;
@@ -205,3 +203,18 @@ body {
     float: none;
   }
 } */
+
+.btn-danger {
+  --bs-btn-hover-color: #dc3545 !important;
+  --bs-btn-color: #000000 !important;
+}
+
+.btn-warning {
+  --bs-btn-hover-color: #ffc107 !important;
+  --bs-btn-color: #000000 !important;
+}
+
+.btn-secondary {
+  --bs-btn-hover-color: #6c757d !important;
+  --bs-btn-color: #000000 !important;
+}
