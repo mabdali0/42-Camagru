@@ -3,12 +3,14 @@ version: '3.8'
 services:
   # Service pour l'application PHP
   web:
+    build: .
     image: php:8.0-apache    # Utilise PHP 8 avec Apache
     container_name: camagru-web
     ports:
       - "8080:80"            # Redirige le port 80 du conteneur vers le port 8080 de ta machine
     volumes:
       - ./src:/var/www/html  # Monte le dossier src dans le conteneur
+      - ./apache-config.conf:/etc/apache2/conf-enabled/apache-config.conf  # Ajoutez cette ligne
     environment:
       - APP_ENV=development
     depends_on:

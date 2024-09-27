@@ -1,19 +1,4 @@
-<?php
-include 'lang.php'; // Assurez-vous que le chemin est correct
-$translations = loadLanguage();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
- 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <!--Stylesheet-->
-    <style media="screen">
-      *,
+*,
 *:before,
 *:after{
     padding: 0;
@@ -102,7 +87,7 @@ input{
     color: #e5e5e5;
 }
 button{
-    margin-top: 5px;
+    margin-top: 10px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
@@ -133,47 +118,90 @@ button{
     background-color: rgba(255,255,255,0.27);
 }
 .social{
-  margin-top: 30px;
-  display: flex;
+margin-top: 30px;
+display: flex;
 }
 .social div{
-  background: red;
-  width: 150px;
-  border-radius: 3px;
-  padding: 5px 10px 10px 5px;
-  background-color: rgba(255,255,255,0.27);
-  color: #eaf0fb;
-  text-align: center;
+background: red;
+width: 150px;
+border-radius: 3px;
+padding: 5px 10px 10px 5px;
+background-color: rgba(255,255,255,0.27);
+color: #eaf0fb;
+text-align: center;
 }
 .social div:hover{
-  background-color: rgba(255,255,255,0.47);
+background-color: rgba(255,255,255,0.47);
 }
 .social .fb{
-  margin-left: 25px;
+margin-left: 25px;
 }
 .social i{
-  margin-right: 4px;
+margin-right: 4px;
 }
 
-    </style>
-</head>
-<body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <form>
-        <a href="sub.php">
-            <div class="btn"><?php echo $translations['signup']; ?></div>
-        </a>
-        <a href="connexion.php">
-            <div class="btn"><?php echo $translations['login']; ?></div>
-        </a>
-        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-971784524958ec92f5e82fe4f0730931e50681b2eb35353afeba44f79893734e&redirect_uri=http%3A%2F%2Fdev.42companion.com%2Fauth%2Fcallback&response_type=code">
-            <div class="btn login_with_42"><?php echo $translations['login_with']; ?>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57 40" height="18" class="ml-1 transition-all fill-white group-hover:fill-black"><path d="M31.627.205H21.084L0 21.097v8.457h21.084V40h10.543V21.097H10.542L31.627.205M35.349 10.233 45.58 0H35.35v10.233M56.744 10.542V0H46.512v10.542L36.279 21.085v10.543h10.233V21.085l10.232-10.543M56.744 21.395 46.512 31.628h10.232V21.395"></path></svg>
-            </div>
-        </a>
-    </form>
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+/* header
+
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-right {
+    float: none;
+  }
+} */

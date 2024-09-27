@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 function loadLanguage() {
     // Vérifier si l'utilisateur a sélectionné une langue
