@@ -60,22 +60,22 @@
               <form action="change-profile-info" method="POST">
                 <div class="form-group">
                   <label for="last_name"><?php echo $translations['last_name']; ?></label>
-                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="<?php echo $translations['last_name']; ?>" value="<?php echo $_SESSION['last_name']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
+                  <input type="text" class="form-control" name="last_name" id="last_name" autocomplete="family-name" placeholder="<?php echo $translations['last_name']; ?>" value="<?php echo $_SESSION['last_name']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
                 </div>
 
                 <div class="form-group">
                   <label for="first_name"><?php echo $translations['first_name']; ?></label>
-                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="<?php echo $translations['first_name']; ?>" value="<?php echo $_SESSION['first_name']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
+                  <input type="text" class="form-control" name="first_name" id="first_name" autocomplete="given-name" placeholder="<?php echo $translations['first_name']; ?>" value="<?php echo $_SESSION['first_name']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
                 </div>
 
                 <div class="form-group">
                   <label for="username"><?php echo $translations['username']; ?></label>
-                  <input type="text" class="form-control" name="username" id="first_name" placeholder="<?php echo $translations['username']; ?>" value="<?php echo $_SESSION['username']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
+                  <input type="text" class="form-control" name="username" id="username" autocomplete="username" placeholder="<?php echo $translations['username']; ?>" value="<?php echo $_SESSION['username']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
                 </div>
 
                 <div class="form-group mb-4">
                   <label for="email"><?php echo $translations['email']; ?></label>
-                  <input type="email" class="form-control" name="email" id="first_name" placeholder="<?php echo $translations['email']; ?>" value="<?php echo $_SESSION['email']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
+                  <input type="email" class="form-control" name="email" id="email" autocomplete="email" placeholder="<?php echo $translations['email']; ?>" value="<?php echo $_SESSION['email']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
                 </div>
                 <?php if (!isset($_SESSION['42_account'])): ?>
                 <div class="form-group">
@@ -102,7 +102,7 @@
       <div class="modal-body">
         <form action="/change-password" method="POST">
           <div class="form-group">
-            <label for="password"><?php echo $translations['password']; ?></label>
+            <label for="new_password"><?php echo $translations['password']; ?></label>
             <input type="password" class="form-control" id="new_password" name="new_password" placeholder="<?php echo $translations['password']; ?>">
           </div>
           <div class="form-group">
