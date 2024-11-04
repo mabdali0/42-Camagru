@@ -1,0 +1,14 @@
+Configuration de la connexion à la base de données
+<?php
+function getDB() {
+    $host = 'camagru-db';
+    $user = 'user';
+    $pass = 'userpassword';
+    $dbname = 'camagru';
+    
+    $mysqli = new mysqli($host, $user, $pass, $dbname);
+    if ($mysqli->connect_error) {
+        die('Erreur de connexion: ' . $mysqli->connect_error);
+    }
+    return $mysqli;
+}

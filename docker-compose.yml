@@ -7,7 +7,7 @@ services:
     image: php:8.0-apache    # Utilise PHP 8 avec Apache
     container_name: camagru-web
     ports:
-      - "8080:80"            # Redirige le port 80 du conteneur vers le port 8080 de ta machine
+      - "80:80"            # Redirige le port 80 du conteneur vers le port 8080 de ta machine
     volumes:
       - ./src:/var/www/html  # Monte le dossier src dans le conteneur
       - ./apache-config.conf:/etc/apache2/conf-enabled/apache-config.conf  # Ajoutez cette ligne
@@ -25,8 +25,23 @@ services:
       MYSQL_DATABASE: camagru         # Crée une base de données 'camagru'
       MYSQL_USER: user                # Utilisateur MySQL
       MYSQL_PASSWORD: userpassword    # Mot de passe utilisateur
+      environment: TZ=Europe/Paris
+
     volumes:
       - db_data:/var/lib/mysql        # Garde les données de la DB persistantes
+      - /etc/localtime:/etc/localtime:ro
+        # Conteneur phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 
 volumes:
   db_data:                            # Volume pour persister les données de la base

@@ -1,6 +1,10 @@
 <?php
 // Include your language file or any required files
 include_once 'lang.php'; // Assurez-vous que le chemin est correct
+include_once 'phpmailerrrr.php'; // Assurez-vous que le chemin est correct
+
+require_once 'app/models/User.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Démarrez la session uniquement si elle n'est pas déjà active
 }
@@ -8,86 +12,17 @@ $translations = loadLanguage();
 $error_message = ''; // Variable pour stocker les messages d'erreur
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données du formulaire
-    $username = trim($_POST['username']);
-    $last_name = trim($_POST['last_name']);
-    $first_name = trim($_POST['first_name']);
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    $confirm_password = trim($_POST['confirm_password']);
-
-    // Vérifier si les champs sont vides
-    if (empty($username) || empty($email) || empty($password)) {
-        $error_message = "Tous les champs doivent être remplis.";
-    } // Vérification de l'email
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error_message = "L'adresse email est invalide.";
-    }
-
-    // Vérification du mot de passe
-    elseif (strlen($password) < 8) {
-        $error_message = "Le mot de passe doit contenir au moins 8 caractères.";
-    } elseif (!preg_match('/[A-Z]/', $password)) {
-        $error_message = "Le mot de passe doit contenir au moins une lettre majuscule.";
-    } elseif (!preg_match('/[a-z]/', $password)) {
-        $error_message = "Le mot de passe doit contenir au moins une lettre minuscule.";
-    } elseif (!preg_match('/[0-9]/', $password)) {
-        $error_message = "Le mot de passe doit contenir au moins un chiffre.";
-    } else if ($password !== $confirm_password) {
-        $error_message = "Les mots de passe ne correspondent pas.";
-    }
-
-    else {
-        // Connectez-vous à votre base de données
-        $conn = new mysqli('camagru-db', 'user', 'userpassword', 'camagru');
-
-        // Vérifiez la connexion
-        if ($conn->connect_error) {
-            $error_message = "Erreur de connexion à la base de données.";
-        } else {
-                // Vérifier si l'username ou l'email existe déjà
-            $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
-            $stmt->bind_param("ss", $username, $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            // Vérifier si l'username ou l'email existe déjà
-            $error_message = '';
-            while ($row = $result->fetch_assoc()) {
-                if ($row['username'] === $username && $row['username'] === $username) {
-                    $error_message = "Le pseudo et l'email sont déjà utilisé.";
-                    break;
-                }
-                elseif ($row['username'] === $username) {
-                    $error_message = "Le pseudo est déjà utilisé.";
-                    break;
-                }
-                elseif ($row['email'] === $email) {
-                    $error_message = "L'email est déjà utilisé.";
-                    break;
-                }
-            }
-            // Hacher le mot de passe avant de l'enregistrer
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Insérer l'utilisateur dans la base de données
-$stmt = $conn->prepare("INSERT INTO users (username, last_name, first_name, email, password) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $username, $last_name, $first_name, $email, $hashed_password); // Notez ici le changement à "sssss"
-            if ($stmt->execute()) {
-                $_SESSION['username'] = $username; // Enregistrer le nom d'utilisateur dans la session
-                $_SESSION['last_name'] = $last_name; // Enregistrer le nom d'utilisateur dans la session
-                $_SESSION['first_name'] = $first_name; // Enregistrer le nom d'utilisateur dans la session
-                $_SESSION['email'] = $email; // Enregistrer le nom d'utilisateur dans la session
-                header("Location: /"); // Rediriger vers la page d'accueil
-                exit;
-            }
-            
-            $stmt->close();
-            $conn->close();
-        }
-    }
+    $user = new User();
+    $user->create(
+        $_POST['username'], 
+        $_POST['last_name'], 
+        $_POST['first_name'], 
+        $_POST['email'], 
+        $_POST['password'], 
+        $_POST['confirm_password']);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,15 +60,15 @@ $stmt->bind_param("sssss", $username, $last_name, $first_name, $email, $hashed_p
         <label for="confirm_password"><?php echo $translations['confirm_password']; ?></label>
         <input type="password" class="mb-3" placeholder="<?php echo $translations['confirm_password']; ?>" id="confirm_password" name="confirm_password" required>
         
-        <?php if (!empty($error_message)): ?>
+        <?php if (!empty($_GET['error'])): ?>
             <div class="error-message" style="color: red;">
-                <?php echo $error_message; ?>
+                <?php echo ($_GET['error']); ?>
             </div>
         <?php endif; ?>
         <button type="submit" class="btn">
             <?php echo $translations['sign_up_form']; ?>
         </button>
-        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-971784524958ec92f5e82fe4f0730931e50681b2eb35353afeba44f79893734e&redirect_uri=http%3A%2F%2Fdev.42companion.com%2Fauth%2Fcallback&response_type=code">
+        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-b859f12a58cec91d13bbe81962d113cb01813f345f3c38944643a3190f3a0cf2&redirect_uri=http%3A%2F%2Fcamagru.com%2Fauth-42-api&response_type=code">
             <button class="btn login_with_42"><?php echo $translations['sign_up_with']; ?>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57 40" height="18" class="ml-1 transition-all fill-white group-hover:fill-black"><path d="M31.627.205H21.084L0 21.097v8.457h21.084V40h10.543V21.097H10.542L31.627.205M35.349 10.233 45.58 0H35.35v10.233M56.744 10.542V0H46.512v10.542L36.279 21.085v10.543h10.233V21.085l10.232-10.543M56.744 21.395 46.512 31.628h10.232V21.395"></path></svg>
             </button>

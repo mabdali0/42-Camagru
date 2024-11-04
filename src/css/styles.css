@@ -39,7 +39,7 @@ body{
     right: -150px;
     bottom: -80px;
 }
-form{
+/* form{
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -50,7 +50,11 @@ form{
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 50px 35px;
+    padding: 30px 35px;
+}
+
+form.login-or-register{
+  width: 500px;
 }
 form *{
     letter-spacing: 0.5px;
@@ -62,17 +66,17 @@ form h3{
     font-weight: 500;
     line-height: 42px;
     text-align: center;
-}
+} */
 
 label{
     display: block;
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 16px;
     font-weight: 500;
 }
 input{
     display: block;
-    height: 50px;
+    height: 40px;
     width: 100%;
     background-color: rgb(127 86 86 / 7%);
     border-radius: 3px;
@@ -217,4 +221,43 @@ body {
 .btn-secondary {
   --bs-btn-hover-color: #6c757d !important;
   --bs-btn-color: #000000 !important;
+}
+
+
+
+.camera-container {
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+
+.photo-sidebar {
+  border-left: 2px solid #ddd;
+  padding-left: 10px;
+}
+
+.photo-sidebar img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 110px;  /* Largeur du conteneur */
+  height: 110px; /* Hauteur du conteneur */
+  border-radius: 50%; /* Pour obtenir un cercle */
+  overflow: hidden; /* Pour cacher les débordements */
+  position: relative; /* Positionnement pour l'image */
+}
+
+.avatar img {
+  width: 100%; /* Remplir le conteneur */
+  height: auto; /* Conserver le rapport d'aspect */
+  position: absolute; /* Pour centrer l'image */
+  top: 50%; /* Déplacer vers le bas de 50% */
+  left: 50%; /* Déplacer vers la droite de 50% */
+  transform: translate(-50%, -50%); /* Centrer l'image */
+  object-fit: cover; /* Recadrer l'image pour qu'elle remplisse le conteneur sans déformation */
+}
+
+.liked{
+  color: #f86368;
 }

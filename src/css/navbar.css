@@ -64,7 +64,7 @@
   padding-left: 50px;
   height: 20px; /* Ajustez cette valeur selon la hauteur de vos liens */
   width: auto; /* Conserve les proportions */
-  filter: brightness(0) invert(1); /* Rend l'image blanche */
+  /* filter: brightness(0) invert(1); Rend l'image blanche */
   vertical-align: middle; /* Aligne l'image avec le texte */
 }
 .header-right img:hover {

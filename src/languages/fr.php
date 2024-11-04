@@ -4,7 +4,8 @@ return [
     'sign_up_page' => 'Camagru - S\'inscrire',
     'sign_in_or_sign_up_page' => 'Camagru - S\'inscrire ou se connecter',
     'home_page' => 'Camagru - Accueil',
-    'profile_page' => 'Camagru - Profile',
+    'camera_page' => 'Camagru - Camera',
+    'profile_page' => 'Camagru - Profil',
     'about_page' => 'Camagru - À propos',
     'welcome' => 'Bienvenue sur Camagru',
     'sign_in' => 'Connexion',
@@ -14,6 +15,10 @@ return [
     'sign_up_form' => 'S\'inscrire',
     'sign_up_with' => 'S\'inscrire avec ',
     'logout' => 'Déconnexion',
+    'forgot-password' => 'Mot de passe oublié',
+    'forgot_password_form' => 'Envoyer un lien de réinitialisation',
+    'change-password' => 'Modifier votre mot de passe',
+    
     'error' => 'Une erreur est survenue',
     'last_name' => 'Nom',
     'first_name' => 'Prénom',
@@ -23,7 +28,10 @@ return [
     'password' => 'Mot de passe',
     'confirm_password' => 'Confirmer le mot de passe',
     'home' => 'Accueil',
-    'profile' => 'Profile',
+    'camera' => 'Camera',
+    'profile' => 'Profil',
     'about' => 'À propos',
+    'my-posts' => 'Mes posts',
+
     // Ajoute d'autres chaînes de texte ici
 ];

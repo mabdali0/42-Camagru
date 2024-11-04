@@ -19,6 +19,14 @@ include_once 'lang.php'; // Assurez-vous que le chemin est correct
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
+<?php if (isset($_GET['message'])): ?>
+  <div class="container">
+
+    <div class="alert alert-success" role="alert">
+        <?php echo htmlspecialchars($_GET['message']); ?>
+    </div>
+    </div>
+<?php endif; ?>
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -30,11 +38,12 @@ include_once 'lang.php'; // Assurez-vous que le chemin est correct
         <a href="/sign_in">
             <div class="btn"><?php echo $translations['sign_in']; ?></div>
         </a>
-        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-971784524958ec92f5e82fe4f0730931e50681b2eb35353afeba44f79893734e&redirect_uri=http%3A%2F%2Fdev.42companion.com%2Fauth%2Fcallback&response_type=code">
+        <a href="https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-b859f12a58cec91d13bbe81962d113cb01813f345f3c38944643a3190f3a0cf2&redirect_uri=http%3A%2F%2Fcamagru.com%2Fauth-42-api&response_type=code">
             <div class="btn login_with_42"><?php echo $translations['sign_in_with']; ?>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57 40" height="18" class="ml-1 transition-all fill-white group-hover:fill-black"><path d="M31.627.205H21.084L0 21.097v8.457h21.084V40h10.543V21.097H10.542L31.627.205M35.349 10.233 45.58 0H35.35v10.233M56.744 10.542V0H46.512v10.542L36.279 21.085v10.543h10.233V21.085l10.232-10.543M56.744 21.395 46.512 31.628h10.232V21.395"></path></svg>
             </div>
         </a>
     </form>
 </body>
+
 </html>
