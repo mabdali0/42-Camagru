@@ -52,15 +52,14 @@ class User {
                         $_SESSION['last_name'] = $last_name;
                         $_SESSION['first_name'] = $first_name;
                         $_SESSION['email'] = $email;
-
                         header("Location: /");
                         exit;
                     }
                 } catch (PDOException $e) {
                     // Gérer les erreurs de la base de données
                     // $this->error_message = "Erreur lors de l'enregistrement : " . $e->getMessage();
-                    $this->error_message = "Erreur lors de l'enregistrement avec PDO";
-                    return false;
+                    $this->error_message = "Erreur lors de l'enregistrement avec PDO $e";
+                    // return false;
                 }
             }
         }
