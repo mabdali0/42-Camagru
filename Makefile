@@ -2,7 +2,7 @@
 DOCKER_COMPOSE_FILE := docker-compose.yml
 
 # Commandes Make
-.PHONY: build up down start stop logs clean
+.PHONY: build up down start stop logs clean fclean
 
 # Construire les images Docker définies dans docker-compose.yml
 build:
@@ -31,3 +31,7 @@ down:
 # Nettoyer complètement le projet (supprimer les conteneurs, images et volumes)
 clean: down
 	docker-compose -f $(DOCKER_COMPOSE_FILE) down --rmi all --volumes --remove-orphans
+
+# Nettoyer complètement le projet (supprimer les conteneurs, images et volumes)
+fclean: clean
+	docker volume rm 42-camagru_db_data
