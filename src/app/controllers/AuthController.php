@@ -77,7 +77,7 @@ class AuthController extends Controller
         // Récupération des variables d'environnement
         $uid = 'u-s4t2ud-b859f12a58cec91d13bbe81962d113cb01813f345f3c38944643a3190f3a0cf2';
         $secret = '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';
-        $redirect_uri = 'http://localhost/login-with-42';
+        $redirect_uri = 'http://localhost:8080/login-with-42';
     
         // Initialisation de cURL
         $ch = curl_init();
@@ -164,10 +164,17 @@ class AuthController extends Controller
                         $password = "default_password"; // Remplace par une logique de mot de passe sécurisée
                         $email_validated = 1; // Remplace par une logique de mot de passe sécurisée
                         $account_42 = 1; // Remplace par une logique de mot de passe sécurisée
-                        $stmt = $conn->prepare("INSERT INTO users (username, last_name, first_name, email, password, image_link, email_validated, 42_account) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                        $stmt->bind_param("ssssssii", $student_info->login, $student_info->last_name, $student_info->first_name, $student_info->email, $password, $student_info->image_link, $email_validated, $account_42);
+                        $image_link = "image/avatar.jpg";
+                        $token_email = "none";
+                        $stmt = $conn->prepare("INSERT INTO users (username, last_name, first_name, email, password, image_link, email_validated, 42_account, token_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        
+                        if ($stmt === false) {
+                            die("Erreur de préparation de la requête : " . $conn->error);
+                        }
+                        $stmt->bind_param("ssssssiis", $student_info->login, $student_info->last_name, $student_info->first_name, $student_info->email, $password, $image_link, $email_validated, $account_42, $token_email);
                         
                         if ($stmt->execute()) {
+                            die("Erreur de préparation de la requête : " . $conn->error);
                             // Sauvegarde des informations de l'utilisateur dans la session
                             $_SESSION['username'] = $student_info->login;
                             $_SESSION['last_name'] = $student_info->last_name;
@@ -178,7 +185,7 @@ class AuthController extends Controller
                             $_SESSION['42_account'] = 1; // Enregistrer le nom d'utilisateur dans la session
                             $_SESSION['active_notification'] = 0; // Enregistrer le nom d'utilisateur dans la session
                         } else {
-                            error_log('Erreur lors de la création de l\'utilisateur : ' . $stmt->error);
+                            die('Erreur lors de la création de l\'utilisateur : ' . $stmt->error);
                         }
                     }
     

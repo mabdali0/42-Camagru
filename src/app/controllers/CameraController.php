@@ -20,7 +20,7 @@ class CameraController extends Controller
 
         if (isset($data['image'])) {
             $image = $data['image'];
-            $filePath = 'uploads/' . uniqid() . '.png';
+            $filePath = 'uploads/' . uniqid('images_', true) . '.png';
 
             $image = str_replace('data:image/png;base64,', '', $image);
             $image = str_replace(' ', '+', $image);

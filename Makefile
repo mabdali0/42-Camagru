@@ -6,7 +6,7 @@ DOCKER_COMPOSE_FILE := docker-compose.yml
 
 # Construire les images Docker définies dans docker-compose.yml
 build:
-	docker-compose -f $(DOCKER_COMPOSE_FILE) build
+	docker-compose up --build
 
 # Démarrer les conteneurs en arrière-plan
 up:
