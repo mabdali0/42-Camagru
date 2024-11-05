@@ -58,6 +58,7 @@
 					<div class="card">
 						<div class="card-body">
               <form action="change-profile-info" method="POST">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                 <div class="form-group">
                   <label for="last_name"><?php echo $translations['last_name']; ?></label>
                   <input type="text" class="form-control" name="last_name" id="last_name" autocomplete="family-name" placeholder="<?php echo $translations['last_name']; ?>" value="<?php echo $_SESSION['last_name']; ?>" <?php if (isset($_SESSION['42_account'])) { echo 'disabled'; } ?>>
@@ -101,6 +102,7 @@
       </div>
       <div class="modal-body">
         <form action="/change-password" method="POST">
+          <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
           <div class="form-group">
             <label for="new_password"><?php echo $translations['password']; ?></label>
             <input type="password" class="form-control" id="new_password" name="new_password" placeholder="<?php echo $translations['password']; ?>">

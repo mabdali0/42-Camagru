@@ -12,6 +12,7 @@
         <div class="shape"></div>
     </div>
     <form method="POST" action="/login_user">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <h3><?php echo $translations['sign_in']; ?></h3>
 
         <label for="username_or_email"><?php echo $translations['username_or_email']; ?></label>

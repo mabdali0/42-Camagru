@@ -14,6 +14,7 @@
         <div class="shape"></div>
     </div>
     <form class="login-or-register">
+    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
     <?php if (isset($_GET['message'])): ?>
     <div class="container">
 

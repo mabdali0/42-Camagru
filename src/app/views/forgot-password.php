@@ -12,6 +12,7 @@
         <div class="shape"></div>
     </div>
     <form method="POST" action="/send-mail-forgot-password">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <h3><?php echo $translations['forgot-password']; ?></h3>
 
         <label for="email"><?php echo $translations['email']; ?></label>

@@ -47,6 +47,10 @@ class AuthController extends Controller
     public function register()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                // Si le token est absent ou invalide, on rejette la requête
+                die("Erreur CSRF : requête invalide.");
+            }
             $user = new User();
             $user->create(
                 $_POST['username'], 
@@ -64,6 +68,10 @@ class AuthController extends Controller
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                // Si le token est absent ou invalide, on rejette la requête
+                die("Erreur CSRF : requête invalide.");
+            }
             $user = new User();
             $user->login(
                 $_POST['username_or_email'], 

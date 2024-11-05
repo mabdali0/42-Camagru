@@ -53,13 +53,9 @@
                         <div class="card-body">
                             <h4 class="card-title">Ajouter un commentaire</h4>
                             <p>
-                            <!-- <form action="/submit_comment" method="POST"> -->
-                                <!-- <div class="form-group"> -->
-                                    <textarea class="form-control" name="comment" rows="3" placeholder="Écrivez votre commentaire ici..." required  id="submit-comment"></textarea>
-                                <!-- </div> -->
-                                <input type="hidden" name="image_id" value="<?php echo $imageId; ?>"> <!-- Assurez-vous que l'ID de l'image est transmis -->
+                                <textarea class="form-control" name="comment" rows="3" placeholder="Écrivez votre commentaire ici..." required  id="submit-comment"></textarea>
+                                <input type="hidden" name="image_id" value="<?php echo $imageId; ?>"> 
                                 <button type="submit" id="submit" class="btn btn-primary">Commenter</button>
-                            <!-- </form> -->
                             </p>
                         </div>
                     </div>

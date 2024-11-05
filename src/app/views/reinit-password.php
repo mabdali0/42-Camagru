@@ -12,6 +12,7 @@
         <div class="shape"></div>
     </div>
     <form method="POST" action="/change-password">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <h3><?php echo $translations['change-password']; ?></h3>
 
         <label for="password"><?php echo $translations['password']; ?></label>
@@ -28,7 +29,7 @@
             <?php endif; ?>
             
             <button type="submit" class="btn">
-                <?php echo $translations['sign_in_form']; ?>
+                Changer le mot de passe
             </button>
     </form>
 </body>

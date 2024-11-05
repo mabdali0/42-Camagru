@@ -13,5 +13,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+// Générer un token CSRF unique
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));  // Crée un token sécurisé
+}
+
 // Charger les traductions dans une variable globale
 $translations = loadLanguage();

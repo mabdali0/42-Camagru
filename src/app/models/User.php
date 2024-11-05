@@ -110,7 +110,7 @@ class User {
 
     // Envoi d'un email de confirmation
     private function sendVerificationEmail($email, $token_email) {
-        $verificationLink = "http://camagru.com/verify.php?token_email=" . $token_email;
+        $verificationLink = "http://localhost:8080/verify.php?token_email=" . $token_email;
         $subject = "Validation de votre compte";
         $body = "<p>Bienvenue! Cliquez sur le lien suivant pour valider votre compte:</p>";
         $body .= "<p><a href='" . $verificationLink . "'>Valider mon compte</a></p>";
@@ -121,10 +121,10 @@ class User {
 
     // Envoi d'un email de confirmation
     public function sendForgotPasswordEmail($email, $token_email, $username) {
-        $reinitLink = "http://camagru.com/password-reinit?token_email=" . $token_email;
+        $reinitLink = "http://localhost:8080/password-reinit?token_email=" . $token_email;
         $subject = "Changement de votre mot de passe";
         $body = "<p>Bonjour " . $username . ", Cliquez sur le lien suivant pour réinitialiser votre mot de passe:</p>";
-        $body .= "<p><a href='" . $reinitLink . "'>Valider mon compte</a></p>";
+        $body .= "<p><a href='" . $reinitLink . "'>Changer mon mot de passe</a></p>";
         
         // Fonction d'envoi d'email à implémenter
         sendConfirmationEmail($email, $subject, $body);

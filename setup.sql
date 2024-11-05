@@ -4,7 +4,7 @@ CREATE TABLE users (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email VARCHAR(100) NOT NULL UNIQUE,
-    image_link VARCHAR(100) NOT NULL UNIQUE,
+    image_link VARCHAR(100) DEFAULT NULL,
     password VARCHAR(255) NOT NULL,
     email_validated TINYINT(1) DEFAULT 0,
     active_notification TINYINT(1) DEFAULT 1,

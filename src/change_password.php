@@ -16,6 +16,10 @@ if ($conn->connect_error) {
 
 // Traitement du changement de mot de passe
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        // Si le token est absent ou invalide, on rejette la requête
+        die("Erreur CSRF : requête invalide.");
+    }
     $username = $_SESSION['username'];
     $old_password = $_POST['old_password'];
     $new_password = $_POST['new_password'];
