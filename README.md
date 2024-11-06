@@ -14,6 +14,7 @@ L'objectif de ce projet est de construire une application web qui permet aux uti
     - [Fonctionnalités d'Édition](#fonctionnalités-dédition)
     - [Contraintes et Éléments Obligatoires](#contraintes-et-éléments-obligatoires)
 5. [Partie Bonus](#partie-bonus)
+5. [Installer le projet](#installer-le-projet)
 
 ---
 
@@ -65,3 +66,10 @@ Le projet demande de créer une petite application web qui permet aux utilisateu
 - Pagination infinie pour la galerie.
 - Supprimer un compte utilisateur
 - La page mes posts qui pagine uniquement les posts de l'utilisateur connecté
+- PHPMYADMIN pour gerer la base de donnees visuellement
+
+## Installer le projet
+- git clone ce repositorie
+- faire make build
+- aller sur localhost:8080 pour acceder au site
+- aller sur localhost:8081 pour acceder a phpmyadmin
