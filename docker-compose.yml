@@ -21,10 +21,10 @@ services:
     image: mysql:5.7
     container_name: camagru-db
     environment:
-      MYSQL_ROOT_PASSWORD: password   # Remplace par ton mot de passe root
-      MYSQL_DATABASE: camagru         # Crée une base de données 'camagru'
-      MYSQL_USER: user                # Utilisateur MySQL
-      MYSQL_PASSWORD: userpassword    # Mot de passe utilisateur
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}   # Remplace par ton mot de passe root
+      MYSQL_DATABASE: ${MYSQL_DATABASE}        # Crée une base de données 'camagru'
+      MYSQL_USER: ${MYSQL_USER}              # Utilisateur MySQL
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}    # Mot de passe utilisateur
       environment: TZ=Europe/Paris
 
     volumes:
@@ -38,7 +38,7 @@ services:
     restart: always
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "8081:80"
     depends_on:

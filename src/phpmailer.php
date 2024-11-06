@@ -6,23 +6,56 @@ require 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+function loadEnv($file)
+{
+    if (!file_exists($file)) {
+        throw new Exception("Le fichier .env n'a pas été trouvé.");
+    }
+
+    // Lire toutes les lignes du fichier .env
+    $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    
+    // Traiter chaque ligne
+    foreach ($lines as $line) {
+        // Ignorer les lignes de commentaire
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+
+        // Séparer la clé et la valeur
+        list($key, $value) = explode('=', $line, 2);
+        
+        // Nettoyer la clé et la valeur (enlever les espaces superflus)
+        $key = trim($key);
+        $value = trim($value);
+        
+        // Définir la variable d'environnement
+        putenv("$key=$value");
+    }
+}
+
 // Fonction pour envoyer un e-mail de confirmation
 function sendConfirmationEmail($email, $subject, $body) {
     // Création d'une nouvelle instance de PHPMailer
     $mail = new PHPMailer(true); // true active les exceptions
+    loadEnv('/var/www/html/.env');
 
+    $smtp = getenv('SMTP');
+    $user_mail = getenv('USER_MAIL');
+    $password_mail = getenv('PASSWORD_MAIL');
+    $port_mail = getenv('PORT_MAIL');
     try {
         // Paramètres SMTP pour Gmail
         $mail->isSMTP(); // Utilisation de SMTP
-        $mail->Host = 'smtp.gmail.com';  // Serveur SMTP de Gmail
+        $mail->Host = $smtp;  // Serveur SMTP de Gmail
         $mail->SMTPAuth = true; // Authentification SMTP activée
-        $mail->Username = 'camagru42perpignan@gmail.com'; // Ton adresse Gmail complète
-        $mail->Password = 'rompekqxjsebehcn'; // Ton mot de passe Gmail
+        $mail->Username = $user_mail; // Ton adresse Gmail complète
+        $mail->Password = $password_mail; // Ton mot de passe Gmail
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Chiffrement TLS (STARTTLS est souvent utilisé)
-        $mail->Port = 587; // Port SMTP pour Gmail
+        $mail->Port = $port_mail; // Port SMTP pour Gmail
 
         // Expéditeur
-        $mail->setFrom('camagru42perpignan@gmail.com', 'Camagru');
+        $mail->setFrom($user_mail, 'Camagru');
 
         // Destinataire
         $mail->addAddress($email);
@@ -42,15 +75,4 @@ function sendConfirmationEmail($email, $subject, $body) {
     }
 }
 
-// // Exemple d'utilisation après la validation du formulaire d'inscription
-// if (1) {
-//     $email = 'lamineabd57@gmail.com'; // Récupérer l'email depuis le formulaire
-//     $test = sendConfirmationEmail($email);
-//     // Envoyer l'e-mail de confirmation
-//     if (!$test) {
-//         echo 'Un e-mail de confirmation a été envoyé à ' . htmlspecialchars($email);
-//     } else {
-//         echo "Erreur lors de l\'envoi de l\'e-mail de confirmation.{$test}";
-//     }
-// }
 ?>

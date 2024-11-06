@@ -90,12 +90,11 @@ class AuthController extends Controller
 
     public function getUserToken($code) {
         // Récupération des variables d'environnement
-        $this->loadEnv('/var/www/html/app/config/.env');
+        $this->loadEnv('/var/www/html/.env');
 
         $uid = getenv('42_UID');
         $secret = getenv('42_SECRET');
         $redirect_uri = 'http://localhost:8080/login-with-42';
-    
         // Initialisation de cURL
         $ch = curl_init();
     
@@ -239,36 +238,6 @@ class AuthController extends Controller
         $token_email = $user['token_email'];
         $userModel->sendForgotPasswordEmail($email, $token_email, $username);
         header("Location: /login_or_register?message=Un%20lien%20à%20été%20envoyé%20à%20$email"); // Rediriger vers la page d'accueil
-
-        // try {
-        //     // Paramètres SMTP pour Gmail
-        //     $mail->isSMTP(); // Utilisation de SMTP
-        //     $mail->Host = 'smtp.gmail.com';  // Serveur SMTP de Gmail
-        //     $mail->SMTPAuth = true; // Authentification SMTP activée
-        //     $mail->Username = 'camagru42perpignan@gmail.com'; // Ton adresse Gmail complète
-        //     $mail->Password = 'rompekqxjsebehcn'; // Ton mot de passe Gmail
-        //     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Chiffrement TLS
-        //     $mail->Port = 587; // Port SMTP pour Gmail
-    
-        //     // Expéditeur
-        //     $mail->setFrom('camagru42perpignan@gmail.com', 'Camagru');
-    
-        //     // Destinataire
-        //     $mail->addAddress($email);
-    
-        //     // Contenu de l'e-mail
-        //     $mail->isHTML(true); // Format HTML
-        //     $mail->Subject = "Camagru - Nouveau commentaire sur votre photo";
-            
-        //     // Corps de l'e-mail
-        //     $mail->Body = "Bonjour {$user->username},<br><br>{$username} a commenté une de vos photos :<br><br><strong>Commentaire :</strong> {$comment}<br><br>Cordialement,<br>L'équipe de Camagru";
-    
-        //     // Envoi de l'e-mail
-        //     $mail->send();
-        //     return true;
-        // } catch (Exception $e) {
-        //     return $mail->ErrorInfo; // En cas d'erreur, renvoie false ou gère l'erreur comme nécessaire
-        // }
     }
 
 

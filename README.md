@@ -70,6 +70,8 @@ Le projet demande de créer une petite application web qui permet aux utilisateu
 
 ## Installer le projet
 - git clone ce repositorie
+- copier le .env.local en .env et mettre le env
+- copier le .env.local.src en src/.env et mettre le env
 - sudo chmod -R 775 /src/uploads
 - sudo chown -R www-data:www-data /src/uploads
 - faire make build
