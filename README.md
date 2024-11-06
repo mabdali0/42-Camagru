@@ -70,6 +70,8 @@ Le projet demande de créer une petite application web qui permet aux utilisateu
 
 ## Installer le projet
 - git clone ce repositorie
+- sudo chmod -R 775 /src/uploads
+- sudo chown -R www-data:www-data /src/uploads
 - faire make build
 - aller sur localhost:8080 pour acceder au site
 - aller sur localhost:8081 pour acceder a phpmyadmin
