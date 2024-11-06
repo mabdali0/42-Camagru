@@ -4,6 +4,13 @@ require_once 'Controller.php';
 require_once 'app/models/User.php'; // Le modèle User pour gérer les utilisateurs
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+
+
+
+
+
+
 class AuthController extends Controller
 {
     // Affiche le formulaire de connexion
@@ -83,8 +90,10 @@ class AuthController extends Controller
 
     public function getUserToken($code) {
         // Récupération des variables d'environnement
-        $uid = 'u-s4t2ud-b859f12a58cec91d13bbe81962d113cb01813f345f3c38944643a3190f3a0cf2';
-        $secret = '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';
+        $this->loadEnv('/var/www/html/app/config/.env');
+
+        $uid = getenv('42_UID');
+        $secret = getenv('42_SECRET');
         $redirect_uri = 'http://localhost:8080/login-with-42';
     
         // Initialisation de cURL
@@ -380,6 +389,36 @@ class AuthController extends Controller
             echo json_encode(['success' => false, 'message' => "Requête invalide."]);
         }
     }
+
+
+    // Fonction pour charger le fichier .env
+function loadEnv($file)
+{
+    if (!file_exists($file)) {
+        throw new Exception("Le fichier .env n'a pas été trouvé.");
+    }
+
+    // Lire toutes les lignes du fichier .env
+    $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    
+    // Traiter chaque ligne
+    foreach ($lines as $line) {
+        // Ignorer les lignes de commentaire
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+
+        // Séparer la clé et la valeur
+        list($key, $value) = explode('=', $line, 2);
+        
+        // Nettoyer la clé et la valeur (enlever les espaces superflus)
+        $key = trim($key);
+        $value = trim($value);
+        
+        // Définir la variable d'environnement
+        putenv("$key=$value");
+    }
+}
     
 
 
